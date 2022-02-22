@@ -5,7 +5,7 @@
   tasks:
     - name: Print a value
       ansible.builtin.debug:
-        msg: URL - {{url}}
+        msg: URL - {{URL}}
 
 - name: play for variable files
   hosts: all
