@@ -15,3 +15,18 @@
     - name: Print URL
       ansible.builtin.debug:
         msg: URL - {{URL}}
+
+- name: play for scope of variables
+  hosts: all
+  tasks:
+    - name: Print URL1
+      ansible.builtin.debug:
+        msg: URL - {{URL}}
+      vars:
+        URL:  task1.example.com
+    - name: Print URL2
+      ansible.builtin.debug:
+        msg: URL - {{URL}}
+      vars:
+        URL: task2.example.com
+
