@@ -5,4 +5,4 @@
 
 TEMP_ID="lt-0f74f51dfef2b396f"
 
-aws ec2 run-instances --launch-template launchTemplateId=${TEMP_ID} | jq
+aws ec2 run-instances --launch-template LaunchTemplateId=${TEMP_ID} | jq
