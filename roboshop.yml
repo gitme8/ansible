@@ -1,22 +1,4 @@
-[frontend]
-  frontend.roboshop.internal
-  [mongodb]
-  mongodb.roboshop.internal
-  [redis]
-  redis.roboshop.internal
-  [rabbitmq]
-  rabbitmq.roboshop.internal
-  [mysql]
-  mysql.roboshop.internal
-  [catalogue]
-  catalogue.roboshop.internal
-  [user]
-  user.roboshop.internal
-  [cart]
-  cart.roboshop.internal
-  [shipping]
-  shipping.roboshop.internal
-  [payment]
-  payment.roboshop.internal
-  [dispatch]
-  dispatch.roboshop.internal
+- name: frontend
+  hosts: FRONTEND
+  roles:
+    - frontend
