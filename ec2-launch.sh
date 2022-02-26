@@ -12,7 +12,7 @@ TEMP_ID="lt-0dd90876b45053146"
 TEMP_VERS=1
 
 aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}" | jq .Reservations[].Instances[].State.name | sed 's/"//g' | grep -E 'running|stopped' &>/dev/null
-if [ $? -eq -0]; then
+if [ $? -eq -0 ]; then
   echo -e "\e[1;33mInstance is already there\e[0m"
   exit
 fi
