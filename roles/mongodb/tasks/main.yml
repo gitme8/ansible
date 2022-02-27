@@ -25,7 +25,12 @@
     name: common
     tasks_from: download
 
-- name: Load Schema
+- name: Load Catalogue Schema
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/{{item}}.js"
+    file: "/tmp/mongodb-main/catalogue.js"
+    idempotent: yes
+
+- name: Load User Schema
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb-main/user.js"
     idempotent: yes
