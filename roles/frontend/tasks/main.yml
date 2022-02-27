@@ -1,0 +1,10 @@
+- name: Install NGINX
+  ansible.builtin.yum:
+    name: nginx
+    state: installed
+
+- name: Unzip Frontend Package
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+    dest: /tmp
+    remote_src: yes
