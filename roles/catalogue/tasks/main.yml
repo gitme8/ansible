@@ -1,5 +1,5 @@
 - name: Install NodeJS Service
-  yum:
+  ansible.builtin.yum:
     name:
       - nodejs
       - make
