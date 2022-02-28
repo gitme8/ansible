@@ -9,6 +9,12 @@ if [ -z "$1" ]; then
 fi
 
 COMPONENT=$1
+ENV=$2
+
+if [ ! -z "$ENV" ]; then
+  ENV="-${ENV}"
+fi
+
 TEMP_ID="lt-0dd90876b45053146"
 TEMP_VERS=1
 ZONE_ID=Z0147057284KXP13X4MV
