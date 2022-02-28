@@ -6,7 +6,7 @@
       - gcc-c++
     state:  installed
 
-- name: Add user
+- name: Add Application User
   ansible.builtin.user:
       name: roboshop
 
