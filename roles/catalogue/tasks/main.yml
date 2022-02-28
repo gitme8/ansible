@@ -1,0 +1,33 @@
+- name: Install NodeJS Service
+  yum:
+    name:
+      - nodejs
+      - make
+      - gcc-c++
+    state:  installed
+
+- name: Add user
+  ansible.builtin.user:
+      name: roboshop
+
+- name: Download and Unzip Catalogue Content
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: download
+
+- name: Remove Old App Content
+  ansible.builtin.file:
+    path: /home/roboshop/catalogue
+    absent
+
+- name: Copy Catalogue Content
+  ansible.builtin.copy:
+    src: /tmp/catalogue-main
+    dest: /home/roboshop/catalogue/
+    remote_src: yes
+  become_user: roboshop
+
+- name: Install NodeJS dependencies
+  community.general.npm:
+    path: /home/roboshop/catalogue
+
