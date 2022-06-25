@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#1. create spot instance
+#1. create SPOT instance
 #2. Take instance IP and register in DNS.
 
 if [ -z "$1" ]; then

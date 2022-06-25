@@ -3,13 +3,40 @@
     src: mysql.repo
     dest: /etc/yum.repos.d/mysql.repo
 
-- name: Install MySQL Server
+- name: Install MySQL Server & Ansible MySQL Modules
   ansible.builtin.yum:
-    name: mysql-community-server
+    name:
+    - mysql-community-server
+    - MySQL-python
     state: installed
 
 - name: Start MySQL Service
   ansible.builtin.systemd:
     name: mysqld
     enabled: true
+
+- name: Grab Default Password
+  ansible.builtin.shell: grep 'temporary password' /var/log/mysqld.log | awk'{print $NF}'
+  register: mysql_default_password
+
+- name: Copy SQL Script for Password reset
+  ansible.builtin.template:
+    src: root-pass-reset.sql
+    dest: /tmp/root-pass-reset.sql
+
+- name: Change the Password
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    target: /tmp/root-pass-reset.sql
+    login_user: root
+    login_passwd: "{{mysql_default_password.stdout}}"
+
+- name: Copy SQL Script for Password reset
+  ansible.builtin.templates:
+    src: root-pass-reset.sql
+    dest: /tmp/root-pass-reset.sql
+
+- name: Change the Password
+  ansible.builtin.shell: mysql --connect-expired-password -uroot -p "{{mysql_default_password.stdout}}" </tmp/pass.sql &>>${LOG_FILE}
 
