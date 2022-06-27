@@ -29,6 +29,3 @@
     state: restarted
     name: nginx
     enabled: yes
-
-
-
