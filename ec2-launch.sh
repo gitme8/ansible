@@ -18,7 +18,7 @@ fi
 TEMP_ID="lt-0496bcb640126f886"
 TEMP_VERS=2
 ZONE_ID=Z07159021W8INOC5QR8AE
-
+0
 CREATE_INSTANCE() {
   ## Check if instance exist already
   aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}" | jq .Reservations[].Instances[].State.Name | sed 's/"//g' | grep -E 'running|stopped' &>/dev/null
